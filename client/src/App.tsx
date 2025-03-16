@@ -9,6 +9,7 @@ import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
 import PatientsPage from "@/pages/patients";
 import AppointmentsPage from "@/pages/appointments";
+import SettingsPage from "@/pages/settings";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <ProtectedRoute path="/" component={DashboardPage} />
       <ProtectedRoute path="/patients" component={PatientsPage} />
       <ProtectedRoute path="/appointments" component={AppointmentsPage} />
+      <ProtectedRoute path="/settings" component={SettingsPage} />
       <Route path="/auth">
         <AuthPage />
       </Route>
