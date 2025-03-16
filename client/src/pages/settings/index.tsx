@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InsertUser, insertUserSchema } from "@shared/schema";
 import { Loader2 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 export default function SettingsPage() {
   const { user } = useAuth();
@@ -24,9 +25,23 @@ export default function SettingsPage() {
     },
   });
 
+  const satusehatForm = useForm({
+    defaultValues: {
+      clientId: "",
+      clientSecret: "",
+      organizationId: "",
+      enabled: false
+    },
+  });
+
   const onSubmit = form.handleSubmit((data) => {
-    console.log("Form submitted:", data);
+    console.log("Profile form submitted:", data);
     // TODO: Implement profile update mutation
+  });
+
+  const onSatusehatSubmit = satusehatForm.handleSubmit((data) => {
+    console.log("SATUSEHAT settings submitted:", data);
+    // TODO: Implement SATUSEHAT settings update
   });
 
   return (
@@ -107,6 +122,92 @@ export default function SettingsPage() {
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   )}
                   Save Changes
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>SATUSEHAT Integration</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Form {...satusehatForm}>
+              <form onSubmit={onSatusehatSubmit} className="space-y-4">
+                <FormField
+                  control={satusehatForm.control}
+                  name="enabled"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                      <div className="space-y-0.5">
+                        <FormLabel className="text-base">
+                          Enable SATUSEHAT Integration
+                        </FormLabel>
+                        <p className="text-sm text-muted-foreground">
+                          Connect your clinic with Indonesia's Healthcare Information System
+                        </p>
+                      </div>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={satusehatForm.control}
+                  name="clientId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Client ID</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter your SATUSEHAT Client ID" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={satusehatForm.control}
+                  name="clientSecret"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Client Secret</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="password" 
+                          {...field} 
+                          placeholder="Enter your SATUSEHAT Client Secret"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={satusehatForm.control}
+                  name="organizationId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Organization ID</FormLabel>
+                      <FormControl>
+                        <Input 
+                          {...field}
+                          placeholder="Enter your Healthcare Organization ID" 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" disabled={satusehatForm.formState.isSubmitting}>
+                  {satusehatForm.formState.isSubmitting && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Save SATUSEHAT Settings
                 </Button>
               </form>
             </Form>

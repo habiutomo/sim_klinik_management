@@ -1,4 +1,4 @@
-import { User, InsertUser, Patient, Appointment } from "@shared/schema";
+import { User, InsertUser, Patient, Appointment, SatusehatSettings, InsertSatusehatSettings } from "@shared/schema";
 import session from "express-session";
 import createMemoryStore from "memorystore";
 
@@ -12,6 +12,8 @@ export interface IStorage {
   getPatients(): Promise<Patient[]>;
   getAppointments(): Promise<Appointment[]>;
   createAppointment(appointment: Omit<Appointment, "id">): Promise<Appointment>;
+  getSatusehatSettings(): Promise<SatusehatSettings | undefined>;
+  updateSatusehatSettings(settings: InsertSatusehatSettings): Promise<SatusehatSettings>;
   sessionStore: session.Store;
 }
 
@@ -19,6 +21,7 @@ export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private patients: Map<number, Patient>;
   private appointments: Map<number, Appointment>;
+  private satusehatSettings?: SatusehatSettings;
   private currentId: number;
   sessionStore: session.Store;
 
@@ -66,6 +69,16 @@ export class MemStorage implements IStorage {
     const newAppointment = { ...appointment, id };
     this.appointments.set(id, newAppointment);
     return newAppointment;
+  }
+
+  async getSatusehatSettings(): Promise<SatusehatSettings | undefined> {
+    return this.satusehatSettings;
+  }
+
+  async updateSatusehatSettings(settings: InsertSatusehatSettings): Promise<SatusehatSettings> {
+    const id = 1; // Single settings record
+    this.satusehatSettings = { ...settings, id };
+    return this.satusehatSettings;
   }
 }
 

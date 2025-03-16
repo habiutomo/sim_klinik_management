@@ -30,6 +30,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.status(201).json(appointment);
   });
 
+  // SATUSEHAT Integration Settings
+  app.get("/api/settings/satusehat", async (req, res) => {
+    if (!req.isAuthenticated() || req.user.role !== "admin") {
+      return res.sendStatus(401);
+    }
+    const settings = await storage.getSatusehatSettings();
+    res.json(settings || {});
+  });
+
+  app.post("/api/settings/satusehat", async (req, res) => {
+    if (!req.isAuthenticated() || req.user.role !== "admin") {
+      return res.sendStatus(401);
+    }
+    const settings = await storage.updateSatusehatSettings(req.body);
+    res.json(settings);
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, timestamp, json } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, timestamp, json, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -35,6 +35,14 @@ export const appointments = pgTable("appointments", {
   notes: text("notes"),
 });
 
+export const satusehatSettings = pgTable("satusehat_settings", {
+  id: serial("id").primaryKey(),
+  clientId: text("client_id").notNull(),
+  clientSecret: text("client_secret").notNull(),
+  organizationId: text("organization_id").notNull(),
+  enabled: boolean("enabled").notNull().default(false),
+});
+
 export const insertUserSchema = createInsertSchema(users)
   .pick({
     username: true,
@@ -52,8 +60,11 @@ export const insertUserSchema = createInsertSchema(users)
 
 export const insertPatientSchema = createInsertSchema(patients);
 export const insertAppointmentSchema = createInsertSchema(appointments);
+export const insertSatusehatSettingsSchema = createInsertSchema(satusehatSettings);
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
+export type InsertSatusehatSettings = z.infer<typeof insertSatusehatSettingsSchema>;
 export type User = typeof users.$inferSelect;
 export type Patient = typeof patients.$inferSelect;
 export type Appointment = typeof appointments.$inferSelect;
+export type SatusehatSettings = typeof satusehatSettings.$inferSelect;
