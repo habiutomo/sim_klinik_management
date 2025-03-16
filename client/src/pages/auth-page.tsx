@@ -10,16 +10,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertUserSchema, type InsertUser, roles } from "@shared/schema";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const [, setLocation] = useLocation();
-
-  // Redirect if already logged in
-  if (user) {
-    setLocation("/");
-    return null;
-  }
 
   const loginForm = useForm({
     defaultValues: {
@@ -33,7 +28,7 @@ export default function AuthPage() {
     defaultValues: {
       username: "",
       password: "",
-      role: "patient",
+      role: "patient" as const,
       fullName: "",
       email: "",
       phone: "",
@@ -41,13 +36,23 @@ export default function AuthPage() {
     },
   });
 
+  useEffect(() => {
+    if (user) {
+      setLocation("/");
+    }
+  }, [user, setLocation]);
+
   const onLogin = loginForm.handleSubmit((data) => {
     loginMutation.mutate(data);
   });
 
-  const onRegister = registerForm.handleSubmit((data: InsertUser) => {
+  const onRegister = registerForm.handleSubmit((data) => {
     registerMutation.mutate(data);
   });
+
+  if (user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen grid md:grid-cols-2">
