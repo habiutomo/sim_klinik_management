@@ -1,0 +1,47 @@
+1. Halaman Login
+Fitur: Otentikasi pengguna (admin, dokter, perawat, pasien).
+Desain: Halaman login dengan form untuk username dan password, serta opsi untuk reset password atau registrasi.
+2. Dashboard Utama
+Fitur: Tampilan ringkas informasi terbaru klinik, seperti jumlah pasien yang terdaftar, status janji temu, dan pengingat tugas.
+Desain: Panel dengan grafik dan data statistik, serta navigasi ke bagian utama lainnya (pasien, jadwal, laporan, dll).
+3. Manajemen Pasien
+Fitur:
+Registrasi pasien baru (data pribadi, riwayat medis).
+Riwayat kunjungan pasien (diagnosis, resep, rekam medis).
+Pencarian pasien berdasarkan nama, ID, atau kategori.
+Desain: Formulir pendaftaran pasien dengan beberapa tab untuk data pribadi, riwayat medis, dan dokumen penting.
+4. Jadwal Praktek Dokter
+Fitur:
+Penjadwalan dan pembatalan janji temu pasien dengan dokter.
+Lihat jadwal dokter dan ketersediaan waktu.
+Desain: Kalender interaktif dengan opsi memilih waktu dan dokter sesuai preferensi pasien.
+5. Manajemen Dokter dan Staff
+Fitur:
+Daftar dokter dan staff medis lainnya dengan informasi kontak dan spesialisasi.
+Pengaturan jadwal praktek dan pembagian tugas.
+Desain: Tampilan grid dengan foto, nama, dan spesialisasi tiap dokter atau staff klinik.
+6. Rekam Medis Elektronik (EHR)
+Fitur:
+Penyimpanan data medis pasien secara elektronik.
+Akses mudah bagi dokter untuk melihat riwayat medis dan memberikan resep.
+Desain: Halaman rekam medis dengan daftar diagnosis, resep obat, dan prosedur medis yang telah dilakukan.
+7. Pembayaran dan Tagihan
+Fitur:
+Pembayaran biaya medis dan pengelolaan tagihan pasien.
+Pilihan metode pembayaran (transfer, kartu kredit, e-wallet).
+Desain: Halaman dengan rincian tagihan, opsi pembayaran, dan status pembayaran.
+8. Laporan dan Analitik
+Fitur:
+Analisis statistik pasien, kunjungan, pendapatan, dan pengeluaran.
+Laporan keuangan dan operasional untuk manajemen klinik.
+Desain: Grafik dan tabel yang menampilkan data analitik, dengan filter berdasarkan waktu dan kategori.
+9. Fitur Pemberitahuan dan Pengingat
+Fitur:
+Pengingat janji temu untuk pasien dan dokter.
+Notifikasi kepada pasien tentang resep, tindakan medis, atau hasil tes.
+Desain: Sistem notifikasi pop-up atau pemberitahuan melalui aplikasi.
+10. Keamanan dan Privasi
+Fitur:
+Perlindungan data pasien dengan enkripsi.
+Pengaturan hak akses berdasarkan peran pengguna (admin, dokter, perawat).
+Desain: Pengaturan privasi dengan kontrol akses dan verifikasi dua faktor untuk login.
