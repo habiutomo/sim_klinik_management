@@ -2,6 +2,9 @@
 
 A comprehensive solution for managing clinical practices, patients, and appointments efficiently.
 
+![Alt text](1.png)
+![Alt text](image.png)
+![Alt text](satusehat.png)
 ## Features
 
 ### 1. User Authentication
@@ -157,4 +160,4 @@ sim-klinik/
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+habizinnia@gmail.com
