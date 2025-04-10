@@ -5,6 +5,7 @@ A comprehensive solution for managing clinical practices, patients, and appointm
 ![Alt text](1.png)
 ![Alt text](image.png)
 ![Alt text](satusehat.png)
+
 ## Features
 
 ### 1. User Authentication
